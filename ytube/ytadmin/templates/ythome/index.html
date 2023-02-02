@@ -1,0 +1,178 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <title>Document</title>
+    <style>
+    .typewriter h1 {
+  color: #fff;
+  font-family: monospace;
+  overflow-wrap: break-word;
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+ /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: .15em; /* Adjust as needed */
+  animation: 
+    typing 3.5s steps(30, end),
+    blink-caret .5s step-end infinite;
+}
+
+/* The typing effect */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+/* The typewriter cursor effect */
+
+    </style>
+</head>
+<body onload="ab()">
+<section style="align-content: center;"> 
+    <div class="cad">
+            <form action="" method="post">
+                {% csrf_token %}
+            <input type="text" class="form__input" id="name" name="link" placeholder="Paste your Youtube Link" required="" /> <br>
+
+            <span id="sho"></span><br>
+
+           <div class="">
+            <select class="slt" id="sl" name="quality">
+            <option value="">Select Qulaity</option>
+            <option value="1080p">1080P | Full HD Qulaity</option>  
+            <option value="720p">720P | HD Qulaity</option>    
+            <option value="480p">480P | SD Qulaity</option>
+            <option value="360p">360P | LQ Qulaity</option>
+            </select>
+           </div><br><br>
+
+          
+
+           <button type="submit" id="download" class="download">Download Video </button>
+           <span id="aa"></span>
+        </form>
+
+        <div id="progress-wrapper">
+  
+          <div id="progress-bar" style="background-color: blue; width: 0%;">&nbsp;</div>
+          <div id="progress-bar-message"></div>
+        </div>
+
+        <input type="file" name="" id="nn" multiple>
+        
+        <script>
+          function updateProgress(progressBarElement, progressBarMessageElement, progress) {
+            progressBarElement.style.width = progress.percent + "%";
+            progressBarMessageElement.innerHTML = progress.current + ' of ' + progress.total + ' processed.';
+          }
+        
+          var trigger = document.getElementById('download');
+          trigger.addEventListener('click', function (e) {
+            var bar = document.getElementById("progress-bar");
+            var barMessage = document.getElementById("progress-bar-message");
+            for (var i = 0; i < 11; i++) {
+              setTimeout(updateProgress, 500 * i, bar, barMessage, {
+                percent: 10 * i,
+                current: 10 * i,
+                total: 100
+              })
+            }
+          })
+        </script>
+
+<div class="typewriter" id="msg2">
+
+  <h1>Welcome to Youtube video Downloader</h1>
+  <br>
+  
+  
+  </div>  
+
+         <div class="typewriter" id="msg">
+
+            <h1>{{status}}</h1>
+            <br>
+            
+            
+            </div>  
+
+            
+</section>
+<script>
+  
+    var url = document.getElementById('name')
+    var quality2 = document.getElementById('sl')
+    url.onfocus = function(){
+      document.getElementById('msg').style.display='none'
+    }
+    url.onfocus = function(){
+      document.getElementById('msg').style.display='none'
+    
+    }
+    
+    url.onkeyup = function(){
+        var format=/^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/
+        if(url.value.match(format))
+        {
+          document.getElementById('msg').innerHTML='' 
+          document.getElementById('msg2').innerHTML='' 
+          document.getElementById('sl').style.display='inline-block';
+        }
+        else
+        {
+          console.log('JJ')
+          document.getElementById('msg').style.display='inline-block'
+          document.getElementById('msg').style.color='#95082F'
+          document.getElementById('msg').style.fontSize='20px'
+          document.getElementById('msg').style.fontWeight='bolder'
+          document.getElementById('msg').style.fontFamily='georgia'
+          document.getElementById('msg').innerHTML='ENTER VALID YOUTUBE LINK';
+        }
+
+        if(url.value == '')
+        {
+            document.getElementById('sl').style.display='none';
+            document.getElementById('download').style.display='none';
+            quality2.value=''
+
+        }
+        
+    }
+
+
+
+    quality2.onchange = function(){
+    document.getElementById('download').style.display='inline-block';
+
+    }
+
+  function ab(){
+
+    var status = document.getElementById('msg')
+    var welcome =  document.getElementById('msg2')
+    var count = status.innerHTML
+    console.log(count)
+     
+    if (count != ''){
+
+    }
+    
+    
+    
+   
+
+  
+  }
+    
+</script>
+
+
+
+
+</body>
+</html>

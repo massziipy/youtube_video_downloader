@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <title>Document</title>
+</head>
+<body>
+<section style="align-content: center;"> 
+    <div class="cad">
+            <form action="" method="post">
+                {% csrf_token %}
+            <input type="text" class="form__input" id="name" name="link" placeholder="Paste your Youtube Link" required="" /> <br>
+
+            <span id="sho"></span><br>
+
+           <div class="">
+            <select class="slt" id="sl" name="quality">
+            <option value="">Select Qulaity</option>
+            <option value="1080p">1080P | Full HD Qulaity</option>  
+            <option value="720p">720P | HD Qulaity</option>    
+            <option value="480p">480P | SD Qulaity</option>
+            <option value="360p">360P | LQ Qulaity</option>
+            </select>
+           </div><br><br>
+
+           <button type="submit" id="download" class="download">Download Video </button>
+           <span id="aa"></span>
+        </form>
+
+        <span id="msg">{{status}}</span>
+           
+</section>
+<script>
+    var url = document.getElementById('name')
+    var quality2 = document.getElementById('sl')
+    url.onfocus = function(){
+      document.getElementById('msg').style.display='none'
+    }
+    url.onkeyup = function(){
+        var format=/^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/
+        if(url.value.match(format))
+        {
+            document.getElementById('sl').style.display='inline-block';
+        }
+
+        if(url.value == '')
+        {
+            document.getElementById('sl').style.display='none';
+            document.getElementById('download').style.display='none';
+            quality2.value=''
+
+        }
+        
+    }
+
+    quality2.onchange = function(){
+    document.getElementById('download').style.display='inline-block';
+
+    }
+</script>
+</body>
+</html>
