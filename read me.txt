@@ -1,3 +1,0 @@
-TO SET DOWNLOAD DIRECTORY:
-
----- go to views.py of ytadmin and assign path to file variable
